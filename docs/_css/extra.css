@@ -1,0 +1,37 @@
+.navbar {
+    background: black;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: rgb(255, 255, 255);
+    background-color: rgb(165, 14, 34);
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: rgb(255, 255, 255);
+    background-color: rgb(228, 21, 48);
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    background-color: #eee;
+    border-color: rgb(228, 21, 48);
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #fff;
+    background-color: rgb(228, 21, 48);
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: rgb(165, 14, 34);
+}
+
+/*Nav bar button*/
+.navbar-default .navbar-toggle {
+    border-color: rgb(165, 14, 34);
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: rgb(165, 14, 34);
+}
+.navbar-default .navbar-toggle {
+    border-color: rgb(165, 14, 34);
+}
+.navbar-default .navbar-toggle {
+    border-color: rgb(165, 14, 34);
+}

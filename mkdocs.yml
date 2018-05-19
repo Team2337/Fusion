@@ -1,0 +1,16 @@
+site_name: Fusion
+pages:
+    - Home: index.md
+    - Defaults:
+        - FusionTimedRobot: defaults/FusionTimedRobot.md
+        - FusionCommand: defaults/FusionCommand.md
+        - FusionAction: defaults/FusionAction.md
+        - FusionSubsystem: defaults/FusionSubsystem.md
+    - Management:
+        - Auton:
+            - AutoAction: management/auton/AutoAction.md
+extra_css:
+    - _css/extra.css
+theme:
+    name: mkdocs
+    custom_dir: theme
