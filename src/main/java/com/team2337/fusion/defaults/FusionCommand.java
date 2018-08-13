@@ -1,6 +1,6 @@
 package com.team2337.fusion.defaults;
 import edu.wpi.first.wpilibj.command.Command;
-
+import com.team2337.fusion.FusionCommandManager;
 /**
  * 
  */
@@ -9,12 +9,12 @@ class FusionCommand extends Command {
     private int _id;
     @Override
     protected void initialize() {
-    	this._id = Fuson.getInstance().init(this.getName());
+    	this._id = FusionCommandManager.getInstance().init(this.getName(), this.getSubsystem());
     	this.start();
     }
     @Override
     protected void end() {
-    	AutoCommandManager.getInstance().end(this.getName(), _id);
+    	FusionCommandManager.getInstance().end(this.getName(), _id);
     	this.stop();
     }
     @Override

@@ -1,9 +1,9 @@
-package com.team2337.fusion.robot;
+package com.team2337.fusion.defaults;
 
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances;
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
 import edu.wpi.first.wpilibj.hal.HAL;
-import com.team2337.fusion.robot.FusionRobotBase; 
+import com.team2337.fusion.defaults.FusionRobotBase;
 import edu.wpi.first.wpilibj.Notifier;
 import com.team2337.fusion.Fusion;
 /**

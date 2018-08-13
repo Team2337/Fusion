@@ -22,11 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class FusionCommandManager {
 	
 	private static FusionCommandManager instance;
-	private double color;
-	private int id = 0;
-	private int running = 0;
-	public String state;
-	private HashMap<Integer, CommandObject> commands = new HashMap<Integer, CommandObject>();
+
+	private HashMap<Integer, SubsystemObject> commands = new HashMap<Integer, CommandObject>();
 
 	private NetworkTable table;
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
@@ -36,19 +33,53 @@ public class FusionCommandManager {
 	 *
 	 * @return the {@link CommandManager}
 	 */
-	public static synchronized FusionCommandManager getInstance() {
+	public static synchronized AutoCommandManager getInstance() {
 		if (instance == null) {
-			instance = new FusionCommandManager();
-			
+			instance = new AutoCommandManager();	
 		}
 		return instance;
 	}
 	/**
-	 * init - Initalize of AutoCommandManager (in Robot)
+	 * init - Initalize of AutoCommandManager (in Fusion)
 	 */
 	public void init() {
-		this.table = NetworkTableInstance.getDefault().getTable("Fusion/Subsystems");
+		this.table = NetworkTableInstance.getDefault().getTable("Fusion");
 		
+	}
+	/**
+	 * setBlinkin - Set color output time, BlinkIn lib is used in this case
+	 * @param led
+	 */
+	public void setBlinkin(BlinkIn led) {
+		this.led = led;
+	}
+	/**
+	 * reset - Resets all variable tracking for all commands run in an action during auton
+	 */
+	public void reset() {
+		color = Color.RED;
+		id = 0;
+		//commands = new HashMap<Integer, AutoObject>();
+		//Instead of making a new hasmap each time, remove all from network table THEN create a new hashmap
+	}	
+	
+	/** 
+	 * disable - The method the robot called to disable
+	 */
+	public void disable() {
+		state = "disabled";
+		NetworkTableEntry data = table.getEntry("state");		
+		data.forceSetString("disabled");
+	}
+	public void teleop() {
+		state = "teleop";
+		NetworkTableEntry data = table.getEntry("state");		
+		data.forceSetString("teleop");
+	}
+	public void auton() {
+		state = "auton";
+		NetworkTableEntry data = table.getEntry("state");		
+		data.forceSetString("auton");
 	}
 	
 	//Methods for AutoCommand to run
@@ -59,7 +90,20 @@ public class FusionCommandManager {
 	 */
 	public int init(String name, int type) {
 		String colors;
-		
+		if (color == Color.BLUE) {
+			color = Color.BLUE;
+			colors = "BLUE";
+			SmartDashboard.putString("COLOR_COMMAND", "BLUE");
+			led.setColor(color);
+		} else {
+			color = Color.YELLOW;
+			colors = "YELLOW";
+			SmartDashboard.putString("COLOR_COMMAND", "YELLOW");
+			led.setColor(color);
+		}
+		id++;
+		AutoObject object = new AutoObject(name, colors);
+		commands.put(id, object);
 		NetworkTableEntry data = table.getEntry(id + "_");		
 		String[] info = {name, colors, String.valueOf(object.startTime.toInstant(ZoneOffset.ofHours(-5)).getEpochSecond())};
 		data.forceSetStringArray(info);

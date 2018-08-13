@@ -1,9 +1,12 @@
 package com.team2337.fusion;
 
 import edu.wpi.first.networktables.*;
+
+import java.awt.List;
 import java.io.*;
 import java.rmi.server.ServerNotActiveException;
-
+import java.util.HashMap;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import com.team2337.fusion.tools.NT;
 /**
  * Fusion is the base class which controller all data handled between other single instanced based classes
@@ -20,6 +23,7 @@ public class Fusion {
 	private static Fusion instance;
 		
 	private NetworkTable tableFusion, tableReactor;
+	private HashMap<String, Subsystem> subsystems = new HashMap<String, Subsystem>();
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 
 	/**
@@ -44,15 +48,15 @@ public class Fusion {
         this.tableFusion = NetworkTableInstance.getDefault().getTable("Fusion");
         this.tableReactor = this.tableFusion.getSubTable("Reactor");
         NT.setText(this.tableReactor, "version", FusionConstants.FUSION_VERSION);
-		NT.setText(this.tableReactor, "relaseDate", FusionConstants.FUSION_RELEASEDATE);
-		
+	
         this.updateMacAddress();
     }
 	/**
 	 * updateMacAddress - Gets Mac Address of Robot
+	 * 
 	 */
     public String updateMacAddress() {
-        String macAddress;
+        String macAddress = "";
 		this.tableReactor = NetworkTableInstance.getDefault().getTable("");
 		try {
 	        Process pid = Runtime.getRuntime().exec("/home/admin/getAddr");
@@ -62,7 +66,7 @@ public class Fusion {
 	        	macAddress = s;
 	        	System.out.println(s + " -");
 	        	break;
-	        }
+			}
 	        System.out.println(macAddress);
             in.close();
             
@@ -71,7 +75,10 @@ public class Fusion {
 		} catch (IOException e){
         	return null;
         }
-    }
-
+	}
+	public void registerSubsystem(Subsystem subsystem) {
+		
+	}
+}
 
 
