@@ -14,5 +14,3 @@ Task Manager
 - Fusion/Subsystem/<name>
     * name : { start: , end: } <-
 
-Enable breadcrumbs:
-Enter: CTRL + SHIFT + .

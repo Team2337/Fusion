@@ -1,29 +1,34 @@
 package fusion.tools;
 
-import edu.wpi.first.wpilibj.command.Command;
+import fusion.defaults.FusionCommand;
 
 /**
- * Wait Command for Anything
+ * Wait command for anything
  * 
- * @author Brendan F. (@ImportProgram)
+ * @author Brendan F. 
  */
-public class FusedWait extends Command {
+public class FusedWait extends FusionCommand {
     private double time = 10;
     
-    public FusedWait(double time, String subsystem) {
+    public FusedWait(double time) {
     	this.time = time;
     }
+
     protected void init() {
+        System.out.println("INITED");
+        System.out.println(this.time);
     	setTimeout(this.time);
     }
     protected void execute() {
     	
     }
+    @Override
     protected boolean isFinished() { 
     	return isTimedOut();
     }
     protected void stop() {
- 
+        System.out.println("ENDED");
+
     }
     protected void interrupted() {this.end();}
 }

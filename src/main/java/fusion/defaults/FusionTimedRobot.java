@@ -3,10 +3,8 @@ import edu.wpi.first.hal.FRCNetComm.tInstances;
 import edu.wpi.first.hal.FRCNetComm.tResourceType;
 
 import edu.wpi.first.hal.HAL;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import fusion.Fusion;
-import fusion.FusionCommandManager;
 /**
  * FusionTimedRobot implements the FusionRobotBase robot program framewor k based upon the IterativeRobotBase.
  *

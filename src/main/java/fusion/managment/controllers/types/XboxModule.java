@@ -5,8 +5,10 @@ import fusion.managment.controllers.JoystickAnalogButton;
 import fusion.managment.controllers.JoystickPOVButton;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+
 /**
  * Define a Xbox Controller with all buttons
+ * 
  * @author Brendan F.
  * @author Jack E.
  *
@@ -36,7 +38,7 @@ public class XboxModule {
 
     public XboxModule(int id) {
         joystick = new Joystick(id);
-        //get Type???????
+        // get Type???????
         A = new JoystickButton(joystick, 1);
         B = new JoystickButton(joystick, 2);
         X = new JoystickButton(joystick, 3);
@@ -59,19 +61,17 @@ public class XboxModule {
         POV_UP_LEFT = new JoystickPOVButton(joystick, 315);
     }
 
-	/** 
-	   * Function enables/disables controller vibration.
-	   * Call with Robot.OI.rumble(OnOff)
-       * 
-	   * @param joy
-       * Joystick to vibrate (EX: Robot.OI.driverJoystick)
-	   * @param intensity 
-       * Intensity of the vibration from 0 to 1 (EX: 0.75)
-	   */ 
-	
-      public void rumble(Joystick joy, double intensity) {
-		joy.setRumble(RumbleType.kLeftRumble, intensity);
-		joy.setRumble(RumbleType.kRightRumble, intensity);
-	}    
+    /**
+     * Function enables/disables controller vibration. Call with
+     * Robot.OI.rumble(OnOff)
+     * 
+     * @param joy       Joystick to vibrate (EX: Robot.OI.driverJoystick)
+     * @param intensity Intensity of the vibration from 0 to 1 (EX: 0.75)
+     */
+
+    public void rumble(Joystick joy, double intensity) {
+        joy.setRumble(RumbleType.kLeftRumble, intensity);
+        joy.setRumble(RumbleType.kRightRumble, intensity);
+    }
 
 }

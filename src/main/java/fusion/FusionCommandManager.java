@@ -1,15 +1,11 @@
 package fusion;
 
-import java.time.ZoneOffset;
 import java.util.HashMap;
-
-import javax.swing.border.EtchedBorder;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.command.Command;
+
 import fusion.defaults.FusionCommandObject;
 
 
@@ -44,8 +40,8 @@ public class FusionCommandManager {
 	 * Starts the command manager initilization period
 	 */
 	public void start() {
+		//Get the table and subtable (single line version)
 		this.commandTable = NetworkTableInstance.getDefault().getTable("Fusion/Commands/");
-
 	}
 
 	// Methods for AutoCommand to run
@@ -57,7 +53,7 @@ public class FusionCommandManager {
 	 * @return id Identifier of the Command
 	 */
 	public int init(String command, String subsystem) {
-		if (!DriverStation.getInstance().isFMSAttached()) {
+		if (Fusion.getInstance().running) {
 			String mode = Fusion.getInstance().getMode();
 			NetworkTableEntry entry = this.commandTable.getEntry(this.commandAmount + "_");
 
@@ -91,7 +87,8 @@ public class FusionCommandManager {
 	 * @param id        Number of the command running
 	 */
 	public void end(String name, String subsystem, int id) {
-		if (!DriverStation.getInstance().isFMSAttached()) {
+		//Check if fusion is running, if so we can update Network Tables
+		if (Fusion.getInstance().running) {
 			String mode = Fusion.getInstance().getMode();
 			FusionCommandObject commandObject = commands.get(id);
 

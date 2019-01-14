@@ -7,17 +7,15 @@
 
 package frc.robot;
 
-import fusion.managment.controllers.types.XboxModule;
-
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
-public class OI {
-  public XboxModule driver;
-  public OI() {
-    //driver = new XboxModule(0);
-    //driver.A.whileActive();
-
-  }
+public class RobotMap {
+  // For example to map the left and right motors, you could define the
+  // following variables to use with your drivetrain subsystem.
+  // public static int leftMotor = 1;
+  // public static int rightMotor = 2;
 }

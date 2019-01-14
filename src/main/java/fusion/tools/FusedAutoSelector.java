@@ -33,7 +33,7 @@ public class FusedAutoSelector {
      */
     public void addObject(String name, Command command) {
         String id = name.toLowerCase().replaceAll(" ", "_");
-        chooser.addObject(name, id); //chooser.addObject("Cheesy Poofs 3 Cube", "cheesy_poofs_3_cube")
+        chooser.addOption(name, id);
         commands.put(id, command);
     }
 
@@ -46,7 +46,7 @@ public class FusedAutoSelector {
      */
     public void addDefault(String name, Command command) {
         String id = name.toLowerCase().replaceAll(" ", "_");
-        chooser.addDefault(name, id); //chooser.addObject("Cheesy Poofs 3 Cube", "cheesy_poofs_3_cube")
+        chooser.addOption(name, id); //chooser.addObject("Cheesy Poofs 3 Cube", "cheesy_poofs_3_cube")
         commands.put(id, command);
     }
 
@@ -57,5 +57,14 @@ public class FusedAutoSelector {
         String id = chooser.getSelected();
         Command cmd = commands.get(id);
         cmd.start();        
+    }
+    /**
+     * Get the selected command and return it
+     * @return Command || FusionCommand || CommandGroup || FusionAction
+     */
+    public Command getSelected() {
+        String id = chooser.getSelected();
+        Command cmd = commands.get(id);
+        return cmd;
     }
 }
