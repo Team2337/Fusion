@@ -14,8 +14,5 @@ The robot project in this repository shows an example of how Fusion works
 ## Building
 TBD
 
-## What happens?
-- Fusion uses net
-
 ## License 
 MIT
