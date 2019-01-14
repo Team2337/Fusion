@@ -13,7 +13,10 @@ import fusion.FusionCommandManager;
 /**
  * Fusion (Singleton)
  * 
- * Main runtime is this class.
+ * This is fusion's main hub. Allowing for static access across
+ * All commands and etc. It can be used for anything really, and 
+ * has a purpose of keeping track if Fusion should run and starting
+ * other singletons, like Command Manager
  * 
  * @author Brendan F. (@ImportProgram)
  * @author Bryce G.
@@ -38,7 +41,7 @@ public class Fusion {
     }
 
     /**
-     * build - This is the startup process of Fusion. We buid it, like a robot.
+     * build - This is the startup process of Fusion. We build it, like a robot.
      */
     public void build() {
         System.out.println("[FUSION] Starting up! (ver " + FusionConstants.FUSION_VERSION + ")");
