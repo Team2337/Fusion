@@ -7,17 +7,17 @@
 
 package frc.robot;
 
-import fusion.managment.controllers.types.XboxModule;
+import fusion.management.controllers.types.XBoxModule;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public XboxModule driver;
-  public OI() {
-    //driver = new XboxModule(0);
-    //driver.A.whileActive();
+  public XBoxModule driver;
 
+  public OI() {
+    // driver = new XboxModule(0);
+    // driver.A.whileActive();
   }
 }

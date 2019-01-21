@@ -36,7 +36,7 @@ import edu.wpi.first.wpilibj.RobotBase;
  *   - testInit()       -- called each and every time test is entered from
  *                         another mode
  *
- * <p>periodic() functions -- each of these functions is called on an interval:
+ * periodic() functions -- each of these functions is called around every 20ms:
  *   - robotPeriodic()
  *   - disabledPeriodic()
  *   - autonomousPeriodic()
@@ -78,7 +78,7 @@ public abstract class FusionRobotBase extends RobotBase {
   /**
    * Initialization code for disabled mode should go here.
    *
-   * <p>Users should override this method for initialization code which will be called each time the
+   * Users should override this method for initialization code which will be called each time the
    * robot enters disabled mode.
    */
   public void disabledInit() {
@@ -167,13 +167,13 @@ public abstract class FusionRobotBase extends RobotBase {
   }
   
   /**
-   * Initilization code for any state of the robot.
+   * Initialization code for any state of the robot.
    */
   public void allInit() {
     System.out.println("Default allInit() method... Make me do something!");
   }
   /**
-   * Runs code for ever, as its a general perodic event
+   * Runs code forever, as its a general periodic event
    */
   public void allPeriodic() {
     if (m_apFirstRun) {

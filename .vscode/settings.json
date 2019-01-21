@@ -10,5 +10,43 @@
     ".classpath": true,
     ".project": true
   },
-  "wpilib.online": true
+  "wpilib.online": true,
+  "cSpell.enabledLanguageIds": [
+    "asciidoc",
+    "c",
+    "cpp",
+    "csharp",
+    "css",
+    "go",
+    "handlebars",
+    "html",
+    "jade",
+    "java",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "latex",
+    "less",
+    "markdown",
+    "php",
+    "plaintext",
+    "pub",
+    "python",
+    "restructuredtext",
+    "rust",
+    "scss",
+    "text",
+    "typescript",
+    "typescriptreact",
+    "yml"
+  ],
+  "cSpell.words": [
+    "auton",
+    "choosable",
+    "livewindow",
+    "rio",
+    "robo",
+    "smartdashboard",
+    "teleop"
+  ]
 }

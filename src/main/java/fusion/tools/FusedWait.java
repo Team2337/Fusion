@@ -5,30 +5,35 @@ import fusion.defaults.FusionCommand;
 /**
  * Wait command for anything
  * 
- * @author Brendan F. 
+ * @author Brendan F.
  */
 public class FusedWait extends FusionCommand {
+    // Default time to timeout between commands (in seconds)
     private double time = 10;
-    
+
+    /**
+     * A timeout command for CommandGroups
+     * 
+     * @param time Amount of time to wait between commands (in seconds)
+     */
     public FusedWait(double time) {
-    	this.time = time;
+        this.time = time;
     }
 
+    // Sets the timeout
     protected void init() {
-        System.out.println("INITED");
-        System.out.println(this.time);
-    	setTimeout(this.time);
+        // System.out.println("COMMAND TIMED OUT FOR:" + this.time + "seconds...");
+        setTimeout(this.time);
     }
-    protected void execute() {
-    	
-    }
-    @Override
-    protected boolean isFinished() { 
-    	return isTimedOut();
-    }
-    protected void stop() {
-        System.out.println("ENDED");
 
+    // When the timeout ends, this command ends
+    @Override
+    protected boolean isFinished() {
+        return isTimedOut();
     }
-    protected void interrupted() {this.end();}
+
+    // When the timeout has ended, say so and end the command
+    protected void stop() {
+        System.out.println("TIMEOUT ENDED");
+    }
 }

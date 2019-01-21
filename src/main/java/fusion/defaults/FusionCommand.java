@@ -4,8 +4,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import fusion.Fusion;
 
 /**
- * FusionCommand An extended class that writes the states of the command to
- * Network Tables
+ * A standard WPI Command class with the addition of runtime tracking. A user
+ * must use init() instead of initialize(), and stop() instead of end()
  * 
  * @author Brendan F.
  * @author Bryce
@@ -14,45 +14,58 @@ public class FusionCommand extends Command {
     public FusionCommand() {
         super();
     }
-    //Create a private integer to store the ID of this command
+
+    // Creates a private integer to store the ID of this command (can be used in the
+    // user's code to access Fusion's NetworkTable entries)
     private int _id;
 
-    //Now we need to overide the initlize command that WPILib uses
-    //Now the user needs to be using INIT for there "start up process"
+    /**
+     * Instead of initialize(), the user uses init(), because initialize() is
+     * dedicated to managing the time that the command started running
+     */
     @Override
     protected void initialize() {
         this._id = Fusion.getInstance().command().init(this.getName(), this.getSubsystem());
         this.init();
     }
 
+    /**
+     * Instead of end(), the user uses stop(), because end() is dedicated to
+     * managing the time that the command finished running
+     */
     @Override
-    //Also the END process is overwritten. 
-    //Now the user needs to use STOP for the "stopping of command"
     protected void end() {
         Fusion.getInstance().command().end(this.getName(), this.getSubsystem(), this._id);
         this.stop();
     }
-    //Interrupted  & isFinished needs to be OVERIDDED in the extended class
+
+    // Both interrupted() and isFinished() cannot use @Override in the user's code /////Is this right?
+
+    /**
+     * Called if the command is cancelled/interrupted
+     */
     @Override
     protected void interrupted() {
         this.end();
     }
-    @Override
+
     /**
-     * Check if the command can be completed
+     * Checks if the command meets it's end condition
      */
+    @Override
     protected boolean isFinished() {
+        // By default, the command never ends
         return false;
     }
 
     /**
-     * Initilization of the command
+     * The start of the command (is used by the user in place of initialize())
      */
     protected void init() {
     }
 
     /**
-     * Ending of the command
+     * The end of the command (is used by the user in place of end())
      */
     protected void stop() {
     }

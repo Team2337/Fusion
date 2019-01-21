@@ -8,26 +8,32 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 import fusion.defaults.FusionCommandObject;
 
-
 /**
- * FusionCommandManager -> Manages Commands for the Robot.
+ * Manages Commands for the Robot. //Improve? Be more specific
  * 
  * @author Brendan F.
  * @author Bryce G.
  */
 public class FusionCommandManager {
 
+	// At each robot startup, create a statically accessible version of the manager
 	private static FusionCommandManager instance;
+
+	// This HashMap holds the data for accessing the commands' runtime information
 	private HashMap<Integer, FusionCommandObject> commands = new HashMap<Integer, FusionCommandObject>();
 
+	// Declares the NetworkTable object that will keep track of all the data
 	private NetworkTable commandTable;
+
+	// The total amount of FusionCommands created (used to keep track of IDs)
 	private int commandAmount = 0;
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 
 	/**
-	 * Returns the {@link CommandManager}, creating it if one does not exist.
+	 * Returns the CommandManager, creating it if one does not exist.
 	 *
-	 * @return the {@link CommandManager}
+	 * @return The instance of the command manager, which can be used to get various
+	 *         pieces of information
 	 */
 	public static synchronized FusionCommandManager getInstance() {
 		if (instance == null) {
@@ -37,20 +43,19 @@ public class FusionCommandManager {
 	}
 
 	/**
-	 * Starts the command manager initilization period
+	 * Starts the CommandManager
 	 */
 	public void start() {
-		//Get the table and subtable (single line version)
+		// Points towards the NetworkTables entry storing all the commands' information
 		this.commandTable = NetworkTableInstance.getDefault().getTable("Fusion/Commands/");
 	}
 
-	// Methods for AutoCommand to run
 	/**
-	 * init {@see FusionCommand# }
+	 * Initializes the command
 	 * 
 	 * @param command   Name of the command running
 	 * @param subsystem Subsystem of the command running
-	 * @return id Identifier of the Command
+	 * @return The ID of the Command
 	 */
 	public int init(String command, String subsystem) {
 		if (Fusion.getInstance().running) {
@@ -63,9 +68,9 @@ public class FusionCommandManager {
 			/**
 			 * Array containing the information of the command that is running
 			 * 
-			 * command: command running subsystems: subsystem the command is running from
-			 * mode: mode the robot is in (ie telepo or auton)
-			 * commandObject.getStartEpoch(): the unix time stamp timer start
+			 * command: The command that's being run subsystem: The subsystem the command is
+			 * running from mode: The mode the robot is in (IE: teleop or auton)
+			 * commandObject.getStartEpoch(): Gets the start time of the command
 			 */
 			String[] info = { command, subsystem, mode, commandObject.getStartEpoch() };
 			entry.forceSetStringArray(info);
@@ -87,7 +92,7 @@ public class FusionCommandManager {
 	 * @param id        Number of the command running
 	 */
 	public void end(String name, String subsystem, int id) {
-		//Check if fusion is running, if so we can update Network Tables
+		// Check if fusion is running, if so we can update Network Tables
 		if (Fusion.getInstance().running) {
 			String mode = Fusion.getInstance().getMode();
 			FusionCommandObject commandObject = commands.get(id);

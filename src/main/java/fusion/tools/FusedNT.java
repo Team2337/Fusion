@@ -4,28 +4,33 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 
 /**
- * NT class is a small library that allows for setting NT Tables (and sub tables)
+ * FusedNT is a small library that allows for setting NT Tables (and sub-tables)
  * 
  * @author Brendan F.
  */
 public class FusedNT {
-    /** Prevent this class from being instantiated. */
-    private FusedNT() {}
+    // Prevent this class from being recreated
+    private FusedNT() {
+    }
+
     /**
-     * SetNumber - Sets a string to an entry of a networktable
+     * Sets an entry of a NetworkTable to have a STRING value
+     * 
      * @param table The table being selected
-     * @param id The entry in the table
-     * @param value The string value
+     * @param id    The entry in the table
+     * @param value The string value to set
      */
     public static void setText(NetworkTable table, String id, String value) {
         NetworkTableEntry e = table.getEntry(id);
         e.forceSetString(value);
     }
+
     /**
-     * SetNumber - Sets a number to an entry of a networktable
+     * Sets an entry of a NetworkTable to have a NUMBER value
+     * 
      * @param table The table being selected
-     * @param id The entry in the table
-     * @param value The number value
+     * @param id    The entry in the table
+     * @param value The decimal number value
      */
     public static void setNumber(NetworkTable table, String id, double value) {
         NetworkTableEntry e = table.getEntry(id);
